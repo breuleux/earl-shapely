@@ -2,15 +2,14 @@
 require:
    shapely ->
       validate, is-valid, union, record
-      any, nil, arrayOf, mapOf
       deferred
+
+provide = shapely
 
 provide:
    _isValid as [::]
    _record as record
    _union as union
-   any, nil, deferred
-   arrayOf, mapOf
 
 
 macro{union, deferred} _union{#data{name = null, body}} =
