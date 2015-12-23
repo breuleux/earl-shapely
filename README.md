@@ -8,7 +8,6 @@ The `::`, `record` and `union` macros are defined and are used as
 such:
 
 ```earlgrey
-
 require:
    earl-shapely ->
       any, nil, array-of
@@ -16,6 +15,11 @@ require:
 require-macros:
    earl-shapely ->
       ::, record, union
+
+record Person:
+   name    :: String
+   age     :: Number
+   friends :: array-of(Person)
 
 union BinaryTree:
    nil
