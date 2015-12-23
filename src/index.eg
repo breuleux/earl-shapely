@@ -1,0 +1,52 @@
+
+require:
+   shapely ->
+      validate, is-valid, union, record
+      any, nil, arrayOf, mapOf
+      deferred
+
+provide:
+   _isValid as [::]
+   _record as record
+   _union as union
+   any, nil, deferred
+   arrayOf, mapOf
+
+
+macro{union, deferred} _union{#data{name = null, body}} =
+   @deps as {union => u, deferred => dfr}
+   body as #multi{*stmts} or stmts is {body}
+   rval = `[^u]{^*exprs}` where exprs = stmts each stmt -> #multi{stmt}
+   if name:
+      #splice with
+         #float{`var ^name = [^dfr]{-> ^name}`}
+         `^name = ^rval`
+   else:
+      rval
+
+
+macro{record, deferred} _record{#data{name = null, body}} =
+   @deps as {record => rec, deferred => dfr}
+   body as #multi{*stmts} or stmts is {body}
+   descr = #data{*pairs} where pairs =
+      stmts each `[^name] :: [^type]` ->
+         `^name = ^type`
+   if name:
+      #splice with
+         #float{`var ^name = [^dfr]{-> ^name}`}
+         `^name = [^rec]{^descr}`
+   else:
+      `[^rec]{^descr}`
+
+
+macro{isValid} _isValid{_} =
+   @deps as {is-valid => iv}
+   @multimacro with {
+      pattern{#data{subp, type}} =
+         #check{`v -> [^iv]{^type, v}`, subp}
+      expr{#data{value, type}} =
+         `[^iv]{^type, ^value}`
+   }
+
+
+
