@@ -1,7 +1,10 @@
 
-Just felt like wrapping
+earl-shapely
+============
+
+Earl Grey macros to wrap
 [shapely](https://github.com/AriaMinaei/shapely) so that it can
-interface with my compile-to-js language,
+interface with
 [Earl Grey](https://breuleux.github.io/earl-grey/)
 
 The `::`, `record` and `union` macros are defined and are used as
@@ -53,4 +56,3 @@ what-is-it(match value) =
 print what-is-it(tree)
 print what-is-it("Blah blah blah")
 ```
-
