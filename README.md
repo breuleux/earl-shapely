@@ -5,7 +5,7 @@ earl-shapely
 Earl Grey macros to wrap
 [shapely](https://github.com/AriaMinaei/shapely) so that it can
 interface with
-[Earl Grey](https://breuleux.github.io/earl-grey/)
+[Earl Grey](https://earl-grey.io)
 
 The `::`, `record` and `union` macros are defined and are used as
 such:
